@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import App from './App';
+import SnakeLadder from './views/snake-ladder/snake-ladder.component';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <SnakeLadder />
   </React.StrictMode>,
   document.getElementById('root')
 );

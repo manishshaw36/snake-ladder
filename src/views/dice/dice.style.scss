@@ -1,0 +1,37 @@
+.face {
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    display: grid;
+    height: 60px;
+    width: 60px;
+    padding: 5px;
+    gap: 2px;
+    grid-template-areas:
+        "a . c"
+        "e g f"
+        "d . b";
+    .pip {
+        background-color: black;
+        padding: 1px;
+        border-radius: 50%;
+    }
+    .pip:nth-child(2) {
+        grid-area: b;
+    }
+    .pip:nth-child(3) {
+        grid-area: c;
+    }
+    .pip:nth-child(4) {
+        grid-area: d;
+    }
+    .pip:nth-child(5) {
+        grid-area: e;
+    }
+    .pip:nth-child(6) {
+        grid-area: f;
+    }
+    .pip:nth-child(odd):last-child {
+        grid-area: g;
+    }
+}
