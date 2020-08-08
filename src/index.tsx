@@ -4,10 +4,13 @@ import './index.scss';
 import SnakeLadder from './views/snake-ladder/snake-ladder.component';
 import * as serviceWorker from './serviceWorker';
 
+import { Provider } from 'react-redux';
+import store from './redux/store/store';
+
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={ store }>
     <SnakeLadder />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 

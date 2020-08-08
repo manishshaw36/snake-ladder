@@ -4,6 +4,7 @@ import './dice.style.scss';
 
 interface Props {
     value: number;
+    diceCaption: string;
 }
 
 const getDiceValue = (value: number) => {
@@ -15,12 +16,12 @@ const getDiceValue = (value: number) => {
 } 
 
 const Dice = (props: Props) => {
-    let { value } = props;
-    return <div className="d-flex flex-column align-items-center justify-content-center">
+    let { value, diceCaption } = props;
+    return <div className="d-flex flex-column align-items-center justify-content-center px-3">
         <div className="face">
             {getDiceValue(value)}
         </div> 
-        <h5 className="m-2">Click on dice to roll</h5>
+        <h5 className="m-2">{diceCaption}</h5>
     </div>  
 }
 

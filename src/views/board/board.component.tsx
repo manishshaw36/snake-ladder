@@ -1,4 +1,5 @@
 import React, { CSSProperties } from 'react';
+import PlayerTurn from '../player-turn/player-turn.component';
 
 class BoardCellObj {
     players: string[] = [];
@@ -10,14 +11,14 @@ class BoardCellObj {
     }
 }
 
-const boardStyle = {
+const boardStyle: CSSProperties = {
     width: "500px",
     height: "500px",
     border: "2px solid black",
     marginLeft: "190px"
 }
 
-const boardCellStyle = {
+const boardCellStyle: CSSProperties = {
     width: "124px",
     height: "124px",
     border: "2px solid black"
@@ -30,22 +31,14 @@ const cellValueStyle: CSSProperties = {
     transform: 'translate(-50%, -50%)'
 }
 
-const dotStyle = (color: string) => ({
-    height: "25px",
-    width: "25px",
-    backgroundColor: color,
-    borderRadius: "50%",
-    display: "inline-block"
-})
-
 const Board = (props: any) => {
-    let { totalCells, eachRowCells, playerInfo } = props;
-    let board: BoardCellObj[] = []
-    let row: any = []
+    let { totalCells, eachRowCells, playerInfo, activePlayer } = props;
+    let board: BoardCellObj[] = [];
+    let row: any = [];
     for(let i = totalCells-1; i >= 0; i--) {
         row.push(new BoardCellObj(i, i));
         if(row.length === eachRowCells) {
-            if((board.length/4)%2) {
+            if((board.length/eachRowCells)%2) {
                 board.push(...row.reverse());
             } else {
                 board.push(...row);
@@ -54,22 +47,14 @@ const Board = (props: any) => {
         }
     }
     board[0].value = "WIN";
-    board[totalCells-4].value = "START";
+    board[totalCells-eachRowCells].value = "START";
     return (
         <div className="d-flex position-relative flex-wrap" style={boardStyle}> 
             {
                 board.map((ele, index) => 
                     <div key={index} style={boardCellStyle} className="position-relative">
                         <h2 className="m-0" style={cellValueStyle}>{ele.value}</h2>
-                        <div className="d-flex justify-content-end">
-                            {
-                                playerInfo.map((player: any) => 
-                                    player.score === ele.id ? 
-                                        <span key={player.name} style={dotStyle(player.name.toLowerCase())}></span>
-                                    : null
-                                )
-                            }
-                        </div> 
+                        <PlayerTurn boardCellId={ele.id} playerInfo={playerInfo} activePlayer={activePlayer}/>
                     </div>
                 )
             }
