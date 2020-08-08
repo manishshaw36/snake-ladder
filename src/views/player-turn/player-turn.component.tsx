@@ -30,7 +30,7 @@ const PlayerTurn = (props: Props) => {
         playerInfo.map((player: any, index: number) => {
             if(boardCellId === undefined) return getDot(player, index, activePlayer)
             else if(boardCellId === player.score) return getDot(player, index, activePlayer)
-            return
+            return null
         })
     }
     </div> 

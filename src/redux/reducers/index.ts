@@ -1,9 +1,6 @@
 import { combineReducers } from 'redux';
-// import PlayerInfo from './create-campaign';
+import snakeLadderReducer from './snake-ladder.reducer';
 
 export default combineReducers({
-    // campaignListReducer,
-    // campaignDetailsReducer,
-    // commonReducer,
-    // createCampaignReducer
+    snakeLadder: snakeLadderReducer
 })
