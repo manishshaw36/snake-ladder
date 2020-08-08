@@ -15,7 +15,6 @@ export const rollDice = () => (dispatch: any) => {
     dispatch(pushData(REDUCER_TYPES.DICE_ROLLED))
 }
 
-
 export const resetSnakeLadder = () => (dispatch: any) => {
     dispatch(pushData(REDUCER_TYPES.RESET_SNAKE_LADDER))
 }

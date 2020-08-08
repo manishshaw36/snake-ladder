@@ -32,6 +32,13 @@ const cellValueStyle: CSSProperties = {
     transform: 'translate(-50%, -50%)'
 }
 
+const specialCellStyle: CSSProperties = {
+    position: 'absolute',
+    bottom: '0',
+    left: '18%',
+    fontWeight: 900
+}
+
 const Board = (props: any) => {
     let { totalCells, eachRowCells, playerInfo, activePlayer } = props;
     let board: BoardCellObj[] = [];
@@ -49,6 +56,7 @@ const Board = (props: any) => {
     }
     board[0].value = "WIN";
     board[totalCells-eachRowCells].value = "START";
+    
     return (
         <div className="d-flex position-relative flex-wrap" style={boardStyle}> 
             {
@@ -58,13 +66,13 @@ const Board = (props: any) => {
                         <PlayerTurn boardCellId={ele.id} playerInfo={playerInfo} activePlayer={activePlayer}/>
                         {
                             SNAKES[ele.id] ? 
-                                <p className="m-0 text-center text-danger" style={{position: "absolute", bottom: "0", left: "30px"}}>
+                                <p className="m-0 text-center text-danger" style={specialCellStyle}>
                                     Snake: <br /> move to {SNAKES[ele.id]}
                                 </p> : null
                         }
                         {
                             LADDER[ele.id] ? 
-                                <p className="m-0 text-center text-warning" style={{position: "absolute", bottom: "0", left: "20px"}}>
+                                <p className="m-0 text-center text-warning" style={specialCellStyle}>
                                     Ladder: <br /> move to {LADDER[ele.id]}
                                 </p> : null
                         }

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import SnakeLadder from './views/snake-ladder/snake-ladder.component';
+import SnakeLadder from './components/snake-ladder/snake-ladder.component';
 import * as serviceWorker from './serviceWorker';
 
 import { Provider } from 'react-redux';
