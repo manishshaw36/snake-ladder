@@ -1,5 +1,5 @@
 import { InitialState, getTotalPlayer } from '../../model/common';
-import { REDUCER_TYPES } from '../constants';
+import { REDUCER_TYPES, SNAKES, LADDER } from '../constants';
 
 
 const initialState: InitialState = new InitialState()
@@ -37,6 +37,8 @@ export default function snakeLadderReducer(state = initialState, action: any) {
             let isWinner = (updatedScore === (totalCells-1)) ? true : false;
             if(playerInfo[activePlayer].score || diceRoll === 1) {
                 if(updatedScore < totalCells){
+                    if(SNAKES[updatedScore]) updatedScore = SNAKES[updatedScore];
+                    if(LADDER[updatedScore]) updatedScore = LADDER[updatedScore];
                     playerInfo[activePlayer].score = updatedScore;
                 }
             }
@@ -49,11 +51,6 @@ export default function snakeLadderReducer(state = initialState, action: any) {
                 playerInfo: [...playerInfo]
             }
 
-        case REDUCER_TYPES.TIME_OUT: 
-            return {
-                ...state,
-                activePlayer: (activePlayer+1)%totalPlayer,
-            }
         case REDUCER_TYPES.RESET_SNAKE_LADDER: 
             return {
                 ...new InitialState()

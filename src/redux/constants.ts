@@ -5,3 +5,11 @@ export const REDUCER_TYPES = {
     TIME_OUT: "TIME_OUT",
     RESET_SNAKE_LADDER: "RESET_SNAKE_LADDER"
 } 
+
+export const SNAKES: any = {
+    14: 3
+}
+
+export const LADDER: any  = {
+    7: 12
+}

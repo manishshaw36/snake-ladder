@@ -1,5 +1,6 @@
 import React, { CSSProperties } from 'react';
 import PlayerTurn from '../player-turn/player-turn.component';
+import { SNAKES, LADDER } from '../../redux/constants';
 
 class BoardCellObj {
     players: string[] = [];
@@ -55,6 +56,18 @@ const Board = (props: any) => {
                     <div key={index} style={boardCellStyle} className="position-relative">
                         <h2 className="m-0" style={cellValueStyle}>{ele.value}</h2>
                         <PlayerTurn boardCellId={ele.id} playerInfo={playerInfo} activePlayer={activePlayer}/>
+                        {
+                            SNAKES[ele.id] ? 
+                                <p className="m-0 text-center text-danger" style={{position: "absolute", bottom: "0", left: "30px"}}>
+                                    Snake: <br /> move to {SNAKES[ele.id]}
+                                </p> : null
+                        }
+                        {
+                            LADDER[ele.id] ? 
+                                <p className="m-0 text-center text-warning" style={{position: "absolute", bottom: "0", left: "20px"}}>
+                                    Ladder: <br /> move to {LADDER[ele.id]}
+                                </p> : null
+                        }
                     </div>
                 )
             }

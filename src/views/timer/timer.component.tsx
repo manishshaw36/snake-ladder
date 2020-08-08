@@ -1,11 +1,11 @@
 import React, { useState, useEffect, CSSProperties } from 'react';
 import { connect } from 'react-redux';
 import { InitialState } from '../../model/common';
-import { timeOut } from '../../redux/actions/snake-ladder.action';
+import { rollDice } from '../../redux/actions/snake-ladder.action';
 
 const timerStyle: CSSProperties = {
   border: "2px solid black",
-  borderRadius: "10px",
+  borderRadius: "50%",
   fontWeight: 700,
   fontSize: "25px",
   width: "80px",
@@ -17,11 +17,11 @@ const timerStyle: CSSProperties = {
 
 interface Props {
   snakeLadder: InitialState;
-  timeOut: Function;
+  rollDice: Function;
 }
 
 const Timer = (props: Props) => {
-  const { timeOut, snakeLadder } = props;
+  const { rollDice, snakeLadder } = props;
   const { start, activePlayer } = snakeLadder;
   const [seconds, setSeconds] = useState(5);
   const [isActive, setIsActive] = useState(false);
@@ -44,16 +44,19 @@ const Timer = (props: Props) => {
     }
     if (seconds === 0) {
       clearInterval(interval);
-      timeOut();
+      rollDice();
     }
     return () => clearInterval(interval);
-  }, [isActive, seconds, timeOut]);
+  }, [isActive, seconds, rollDice]);
 
   return (
-    <div className="d-flex justify-content-center align-items-center" style={{ width: "200px" }}>
+    <div className="d-flex flex-column justify-content-center align-items-center" style={{ width: "200px" }}>
       <div style={timerStyle}>
         {seconds}s
       </div>
+      <h5 className="m-0">
+        Timer
+      </h5>
     </div>
   );
 };
@@ -65,7 +68,7 @@ const mapStateToProps = (state: any) => {
 }
 
 const mapDispatchToProps = (dispatch: any) => ({
-  timeOut: () => dispatch(timeOut())
+  rollDice: () => dispatch(rollDice())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Timer);
